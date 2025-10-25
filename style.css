@@ -1,0 +1,224 @@
+/* Import the Poppins font from Google Fonts. This ensures a modern, clean sans-serif typeface is loaded for consistent typography across the page. It supports weights 400, 500, and 600, which are used in headings and text for visual hierarchy. */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
+/* Styles for the body element. This sets the global font, background, padding, and text color. The linear gradient background creates a subtle, angled visual depth. Padding adds breathing room around the content. The color is a dark gray for good readability. Overflow-x is hidden to prevent unwanted horizontal scrolling during animations. */
+body {
+  font-family: 'Poppins', sans-serif; /* Applies the imported font for a professional look. */
+  background: linear-gradient(120deg, #e8e9ea, #d6d8db); /* Darkened gradient for a more muted, sophisticated background without being too stark. */
+  padding: 40px; /* Provides space around the page edges for better layout. */
+  color: #333; /* Dark gray text for high contrast and readability. */
+  overflow-x: hidden; /* Prevents horizontal overflow, especially useful during slide animations. */
+}
+
+/* Media query to respect user preferences for reduced motion (e.g., for accessibility or motion sensitivity). This disables animations and transitions if the user has set 'prefers-reduced-motion: reduce' in their browser/OS settings, ensuring inclusivity. */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important; /* Instantly disables animations. */
+    animation-iteration-count: 1 !important; /* Ensures no looping. */
+    transition-duration: 0.01ms !important; /* Instantly disables transitions. */
+  }
+}
+
+/* Styles for the main container div. This wraps the content in a card-like box with rounded corners and shadow for depth. The animation makes the container fade in and slide up on page load, creating an engaging entrance. Max-width ensures responsiveness. */
+.container {
+  background: #f9f9f9; /* Darkened from white to a very light gray for a subtle, cohesive look that ties into the darker theme. */
+  padding: 25px 30px; /* Internal spacing for content. */
+  border-radius: 12px; /* Softens edges for a modern feel. */
+  box-shadow: 0 6px 20px rgba(0,0,0,0.1); /* Adds depth and elevation. */
+  max-width: 800px; /* Limits width for readability on larger screens. */
+  margin: auto; /* Centers the container horizontally. */
+  animation: fadeInUp 0.8s ease-out; /* Triggers a smooth fade-in and upward slide on load. */
+  transform: translateY(0); /* Ensures the element starts in the correct position after animation. */
+}
+
+/* Styles for the main heading (h1). Centers the title and applies bold weight for emphasis. The animation delays its appearance slightly after the container, creating a staggered reveal effect for visual flow. */
+h1 {
+  text-align: center; /* Horizontally centers the text. */
+  font-weight: 600; /* Makes the text semi-bold for prominence. */
+  margin-bottom: 25px; /* Adds space below to separate from other elements. */
+  color: #333; /* Inherits the body's dark gray for consistency. */
+  animation: fadeIn 1s ease-out 0.2s both; /* Fades in with a 0.2s delay, using 'both' to retain the end state. */
+}
+
+/* Styles for the search-filter div, which contains input and select elements. Flexbox layout centers and spaces the elements evenly. The animation slides them in from the top with a delay, enhancing the page's dynamic feel. */
+.search-filter {
+  display: flex; /* Uses flexbox for responsive, aligned layout. */
+  gap: 10px; /* Adds space between child elements. */
+  justify-content: center; /* Centers the elements horizontally. */
+  margin-bottom: 20px; /* Provides separation from the table below. */
+  animation: slideInFromTop 0.6s ease-out 0.4s both; /* Slides in from above with a 0.4s delay for sequencing. */
+}
+
+/* Styles for input and select elements (search/filter controls). These have rounded borders and transitions for smooth interactions. The base transform scale prepares for focus animations. */
+input, select {
+  padding: 10px 14px; /* Internal padding for comfortable input size. */
+  border-radius: 8px; /* Rounds corners for a friendly UI. */
+  border: 1px solid #aaa; /* Darkened border for better visibility against the new background. */
+  outline: none; /* Removes default browser outline for custom focus styling. */
+  transition: all 0.3s ease; /* Smoothly animates all property changes (e.g., border, shadow). */
+  font-size: 14px; /* Sets readable text size. */
+  transform: scale(1); /* Base scale for interactive growth effects. */
+}
+
+/* Focus styles for input and select. Enhances usability by highlighting active fields with color and shadow. The slight scale makes it feel interactive. */
+input:focus, select:focus {
+  border-color: #007bff; /* Blue accent for focus indication. */
+  box-shadow: 0 0 8px #007bff70; /* Subtle glow effect. */
+  transform: scale(1.02); /* Slight enlargement for tactile feedback. */
+}
+
+/* Hover styles for input and select. Provides visual feedback on mouseover, with a lift effect for interactivity. */
+input:hover, select:hover {
+  border-color: #004085; /* Darkened blue for consistency with the theme. */
+  transform: translateY(-2px); /* Lifts the element slightly. */
+}
+
+/* Styles for the table element. Sets full width and collapses borders for a clean look. The animation fades it in with a delay, syncing with the overall page load sequence. Position relative allows for overlay effects like the shimmer. */
+table {
+  width: 100%; /* Spans the full container width. */
+  border-collapse: collapse; /* Merges borders for seamless rows. */
+  animation: fadeIn 0.8s ease-out 0.6s both; /* Fades in after other elements, with a 0.6s delay. */
+  position: relative; /* Enables absolute positioning for child pseudo-elements (e.g., shimmer). */
+}
+
+/* Optional shimmer effect for the table when loading data (e.g., during PHP queries). Add the 'loading' class via JavaScript to trigger this. It creates a moving highlight to indicate activity, improving perceived performance. */
+table.loading::before {
+  content: ''; /* Generates a pseudo-element for the effect. */
+  position: absolute; /* Positions over the table without affecting layout. */
+  top: 0; left: 0; right: 0; bottom: 0; /* Covers the entire table. */
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent); /* Creates a sweeping light effect. */
+  animation: shimmer 1.5s infinite; /* Loops the shimmer animation. */
+}
+
+/* Styles for table headers (th) and data cells (td). Defines padding and borders for structure. Transitions enable smooth hover effects on rows. */
+th, td {
+  padding: 12px 10px; /* Provides internal spacing. */
+  text-align: left; /* Aligns text to the left. */
+  border-bottom: 1px solid #aaa; /* Darkened border for subtle separation. */
+  transition: background 0.3s ease, transform 0.3s ease; /* Smoothly animates background and position changes. */
+}
+
+/* Styles for sortable table headers. Makes them clickable with color and cursor changes. Hover and active states add interactive feedback, simulating sorting actions. */
+th.sortable {
+  cursor: pointer; /* Indicates clickability. */
+  color: #007bff; /* Blue color for emphasis. */
+  transition: all 0.3s ease; /* Animates all changes smoothly. */
+  position: relative; /* Allows for transform effects. */
+}
+
+/* Hover effect for sortable headers. Underlines and scales for visual feedback, with a bounce animation for playfulness. */
+th.sortable:hover {
+  text-decoration: underline; /* Adds underline for clarity. */
+  transform: scale(1.05); /* Slightly enlarges. */
+  animation: bounce 0.6s ease; /* Adds a bouncing motion. */
+}
+
+/* Active (click) effect for sortable headers. Rotates and scales to mimic sorting, providing immediate feedback. */
+th.sortable:active {
+  transform: rotate(180deg) scale(1.1); /* Flips and grows on click. */
+  transition: transform 0.2s ease; /* Quick transition for responsiveness. */
+}
+
+/* Styles for table rows (tr). Each row slides in with a delay, creating a cascading effect. This makes the table feel dynamic when data loads. */
+tr {
+  animation: slideInRow 0.5s ease-out both; /* Applies staggered slide-in. */
+}
+
+/* Delays for individual rows to create a sequential reveal. Adjust these based on your table's length for optimal effect. */
+tr:nth-child(1) { animation-delay: 0.8s; } /* First row delays 0.8s. */
+tr:nth-child(2) { animation-delay: 0.9s; } /* Second row delays 0.9s. */
+tr:nth-child(3) { animation-delay: 1.0s; } /* Third row delays 1.0s. */
+/* Add more nth-child rules as needed for longer tables. */
+
+/* Hover effect for table rows. Changes background and lifts the row for interactivity, making data exploration feel engaging. */
+tr:hover {
+  background: #f0f0f0; /* Darkened hover background for better contrast. */
+  transform: translateY(-3px) scale(1.01); /* Lifts and slightly enlarges. */
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1); /* Adds shadow for depth. */
+  transition: all 0.3s ease; /* Smooth animation. */
+}
+
+/* Styles for the pagination div. Centers the links and animates them in last for a complete sequence. */
+.pagination {
+  text-align: center; /* Centers the pagination controls. */
+  margin-top: 15px; /* Adds space above. */
+  animation: fadeIn 0.8s ease-out 1.2s both; /* Fades in with a 1.2s delay. */
+}
+
+/* Styles for pagination links (a). Defines their appearance with transitions for smooth state changes. */
+.pagination a {
+  display: inline-block; /* Allows for block-like behavior in flow. */
+  margin: 0 4px; /* Spaces links apart. */
+  padding: 6px 12px; /* Internal padding for size. */
+  background: #e8e8e8; /* Darkened background for subtlety. */
+  border-radius: 8px; /* Rounds corners. */
+  text-decoration: none; /* Removes underline. */
+  color: #333; /* Dark text for contrast. */
+  transition: all 0.3s ease; /* Smooth transitions. */
+  transform: scale(1); /* Base scale for effects. */
+}
+
+/* Hover effect for pagination links. Changes color and lifts for feedback. */
+.pagination a:hover {
+  background: #007bff; /* Blue background on hover. */
+  color: white; /* White text for contrast. */
+  transform: scale(1.1) translateY(-2px); /* Grows and lifts. */
+}
+
+/* Active (click) effect for pagination links. Simulates a press-down for tactile feel. */
+.pagination a:active {
+  transform: scale(0.95); /* Shrinks slightly. */
+}
+
+/* Active state for the current page link. Uses pulsing animation to draw attention. */
+.pagination a.active {
+  background: #007bff; /* Blue background. */
+  color: white; /* White text. */
+  animation: pulse 1.5s infinite; /* Continuous pulse effect. */
+}
+
+/* Keyframe definitions for animations. These define the motion sequences used throughout the CSS. */
+
+/* fadeIn: Simple opacity transition from invisible to visible. Used for staggered reveals. */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* fadeInUp: Combines fade with upward slide. Used for the container's entrance. */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* slideInFromTop: Slides elements down from above. Used for the search/filter bar. */
+@keyframes slideInFromTop {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* slideInRow: Slides rows from the left. Used for table rows to create a list-like reveal. */
+@keyframes slideInRow {
+  from { opacity: 0; transform: translateX(-20px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+/* bounce: Creates a bouncing motion. Used for sortable header hovers to add playfulness. */
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+  40% { transform: translateY(-10px); }
+  60% { transform: translateY(-5px); }
+}
+
+/* pulse: Expands and contracts a shadow. Used for active pagination to indicate the current page. */
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(0,123,255,0.7); }
+  70% { box-shadow: 0 0 0 10px rgba(0,123,255,0); }
+  100% { box-shadow: 0 0 0 0 rgba(0,123,255,0); }
+}
+
+/* shimmer: Moves a gradient across the element. Used for the loading effect on tables. */
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
