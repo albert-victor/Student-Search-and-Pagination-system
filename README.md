@@ -62,12 +62,14 @@ student-search/ │ ├── index.php              # Main entry page (with AJA
 
 1. Clone or download this repository  
    ```bash
-   git clone https://github.com/yourusername/student-search.git
+   git clone https://github.com/albert-victor/Student-Search-and-Pagination-system.git
 
 2. Move the folder to your XAMPP htdocs directory
 
 3. Create a new MySQL database (e.g., student_db)
 
+// you did not add it ?
+ 
 4. Import the .sql file included in the project
 
 5. Open your browser and visit:
