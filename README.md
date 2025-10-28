@@ -1,4 +1,7 @@
 🧍‍♂️ Student Search & Management System
+<p align="center">
+<img src="screenshots/preview.png" alt="Project preview" width="800"/>
+<p/>
 
 A simple **PHP + MySQL** project built to practice backend logic and AJAX integration.  
 This system allows users to **search, filter, sort, and paginate student records** without reloading the page.
